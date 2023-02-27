@@ -35,13 +35,13 @@ include("templates/header.php")
                 <div class="matelas-right-wrapper">
                     <h1><?= $matelas["name"] ?></h1>
 
-                    <p>Marque : <?= $matelas["marque"] ?></p>
-                    <p>Dimensions : <?= $matelas["dimensions"] ?>m</p>
+                    <p>Marque : <?= $matelas["brand"] ?></p>
+                    <p>Dimensions : <?= $matelas["size"] ?>m</p>
                     <p> Prix d'origine : <span><?= $matelas["price"] ?>€</span></p>
-                    <p> Prix actuel : <?= $matelas["solde"] ?>€ </p>
+                    <p> Prix actuel : <?= $matelas["newPrice"] ?>€ </p>
 
                     <div class="matelas-btn">
-                        <button class="edit">Modifier</button>
+                       <a href="edit.php?id=<?= $matelas["id"] ?>"><button class="edit">Modifier</button></a> 
                         <button class="delete">Supprimer</button>
                     </div>
                 </div>

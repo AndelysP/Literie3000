@@ -21,10 +21,10 @@ include("templates/header.php")
                 <div class="item-details">
                     <a href="matelas.php?id=<?= $item["id"] ?>"><?= $item["name"] ?></a>
 
-                   <p><?= $item["marque"] ?></p>
-                   <p><?= $item["dimensions"] ?>m</p>
+                   <p><?= $item["brand"] ?></p>
+                   <p><?= $item["size"] ?>m</p>
                    <p><span><?= $item["price"] ?>€</span></p>
-                   <p><?= $item["solde"] ?>€ </p>
+                   <p><?= $item["newPrice"] ?>€ </p>
                 </div>
             </div>
         <?php }

@@ -3,16 +3,16 @@ USE literie3000;
 
 CREATE TABLE matelas (
     id smallint primary key auto_increment,
-    marque varchar(250) NOT NULL, 
+    brand varchar(250) NOT NULL, 
     name varchar(250) NOT NULL, 
-    dimensions varchar(50),
+    size varchar(50),
     picture VARCHAR(255),
     price DECIMAL(6,2),
-    solde DECIMAL(6,2)
+    newPrice DECIMAL(6,2)
 );
 
 INSERT INTO matelas 
-(marque, name, dimensions, picture, price, solde)
+(brand, name, size, picture, price, newPrice)
 VALUES 
 ("EPEDA", "Matelas Transition", "90x190", "https://media.but.fr/images_produits/produit-zoom/3663728719257_AMB1.jpg", 759.00, 529.00),
 ("DREAMWAY", "Matelas Stan", "90x190", "https://www.conforama.fr/fstrz/r/s/cdn2.conforama.fr/product/image/abf4/G_CNF_H75819325_C.jpeg", 809.00, 709.00),

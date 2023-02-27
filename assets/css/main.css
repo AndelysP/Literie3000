@@ -16,7 +16,7 @@ header .flex-container {
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 1.5rem;
-  background-color: rgb(20, 66, 132);
+  background-color: rgb(20, 87, 132);
 }
 header .flex-container img {
   width: 350px;
@@ -28,7 +28,7 @@ header .flex-container .nav {
 .items .item {
   display: flex;
   margin: 2rem;
-  background-color: rgba(64, 138, 148, 0.466);
+  background-color: rgba(95, 144, 172, 0.466);
   border-radius: 20px;
 }
 .items .item img {
@@ -83,6 +83,41 @@ header .flex-container .nav {
 .matelas-wrapper .matelas-right-wrapper .matelas-btn .edit {
   background-color: rgb(150, 229, 143);
   box-shadow: inset 5px -5px 10px rgb(84, 143, 79);
+}
+
+.form-data form {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.form-data form .btn-edit {
+  font-size: 1.2rem;
+  background-color: #145784;
+  color: white;
+  padding: 1rem 2rem;
+  margin: 1rem auto;
+  text-transform: uppercase;
+  border: 0;
+  border-radius: 2rem;
+}
+.form-data form .form-group {
+  flex-basis: 100%;
+  padding: 0 3rem;
+  margin-bottom: 2rem;
+}
+.form-data form .form-group label {
+  display: block;
+  margin-bottom: 1rem;
+}
+.form-data form .form-group input,
+.form-data form .form-group textarea,
+.form-data form .form-group select {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 2rem;
+  border: 0;
+  box-shadow: 0 0 1rem #ddd;
 }
 
 /*# sourceMappingURL=main.css.map */
