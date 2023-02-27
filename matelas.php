@@ -46,7 +46,7 @@ include("templates/header.php")
 
                     <div class="matelas-btn">
                         <a href="edit.php?id=<?= $matelas["id"] ?>"><button class="edit">Modifier</button></a>
-                        <a href="delete.php?id<?= $matelas["id"] ?>"><button class="delete">Supprimer</button></a>
+                        <a href="delete.php?id=<?= $matelas["id"] ?>"><button class="delete">Supprimer</button></a>
                     </div>
                 </div>
             </div>

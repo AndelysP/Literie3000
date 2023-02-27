@@ -80,6 +80,7 @@ if (!empty($_POST)) {
     }
 }
 
+header("Location: index.php");
 include("templates/header.php");
 ?>
 
