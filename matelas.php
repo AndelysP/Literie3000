@@ -45,8 +45,8 @@ include("templates/header.php")
                     <p> Prix actuel : <?= $matelas["newPrice"] ?>€ </p>
 
                     <div class="matelas-btn">
-                        <a href="edit.php?id=<?= $matelas["id"] ?>"><button class="edit">Modifier</button></a>
-                        <a href="delete.php?id=<?= $matelas["id"] ?>"><button class="delete">Supprimer</button></a>
+                        <a href="edit.php?id=<?= $matelas["id"] ?>"><button class="edit"><i class="bi bi-pencil-square">Modifier</i></button></a>
+                        <a href="delete.php?id=<?= $matelas["id"] ?>"><button class="delete"><i class="bi bi-trash3">Supprimer</i></button></a>
                     </div>
                 </div>
             </div>

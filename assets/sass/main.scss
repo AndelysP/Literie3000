@@ -2,7 +2,7 @@ body {
     box-sizing: border-box;
     margin: 0 auto;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: rgb(241, 246, 250);
+    background-color: rgb(241, 242, 243);
 }
 
 h1 {
@@ -37,8 +37,10 @@ header {
     .item {
         display: flex;
         margin: 2rem 10rem;
-        background-color: rgba(118, 158, 182, 0.466);
+        border: 1px solid #144284;
+        background-color: #e9e9e9;
         border-radius: 20px;
+        box-shadow: 5px 5px 15px rgb(197, 197, 197);
 
         @media screen and (max-width: 992px) {
             margin: 2rem;
@@ -60,12 +62,12 @@ header {
         }
 
         .item-details {
-            color: #fff;
+            color: #145784;
             padding: 2rem;
 
             a {
                 text-decoration: underline;
-                color: #fff;
+                color: #145784;
                 font-size: 23px;
             }
 
@@ -132,6 +134,11 @@ header {
 }
 
 .form-data {
+    margin: 2rem 20rem;
+
+    @media screen and (max-width: 1400px) {
+        margin: 2rem 0;
+    }
     form {
         margin-top: 1rem;
 
