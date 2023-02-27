@@ -21,7 +21,8 @@ header .flex-container {
 header .flex-container img {
   width: 350px;
 }
-header .flex-container .nav {
+header .flex-container .nav a {
+  text-decoration: none;
   color: #fff;
 }
 
@@ -89,9 +90,10 @@ header .flex-container .nav {
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .form-data form .btn-edit {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: #145784;
   color: white;
   padding: 1rem 2rem;
@@ -99,11 +101,12 @@ header .flex-container .nav {
   text-transform: uppercase;
   border: 0;
   border-radius: 2rem;
+  cursor: pointer;
 }
 .form-data form .form-group {
   flex-basis: 100%;
   padding: 0 3rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .form-data form .form-group label {
   display: block;
@@ -118,6 +121,17 @@ header .flex-container .nav {
   border-radius: 2rem;
   border: 0;
   box-shadow: 0 0 1rem #ddd;
+  margin-bottom: 0.5rem;
+}
+.form-data form .info-error {
+  color: rgb(202, 98, 98);
+  font-weight: bold;
+  padding: 1rem;
+}
+.form-data form p {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -4,7 +4,7 @@ $db = new PDO('mysql:host=localhost;dbname=literie3000;charset=UTF8', 'root', ''
 
 // Requête sur la BDD
 $query = $db->query("SELECT *  FROM matelas
-                    ORDER BY id ASC");
+                    ORDER BY id DESC");
 $matelas = $query->fetchAll(PDO::FETCH_ASSOC);
 
 // var_dump($matelas);
@@ -14,6 +14,7 @@ include("templates/header.php")
 
 <main>
     <div class="items">
+        <h1>Nos matelas</h1>
         <?php foreach ($matelas as $item) {
         ?>
             <div class="item">
@@ -21,10 +22,10 @@ include("templates/header.php")
                 <div class="item-details">
                     <a href="matelas.php?id=<?= $item["id"] ?>"><?= $item["name"] ?></a>
 
-                   <p><?= $item["brand"] ?></p>
-                   <p><?= $item["size"] ?>cm</p>
-                   <p><span><?= $item["price"] ?>€</span></p>
-                   <p><?= $item["newPrice"] ?>€ </p>
+                    <p><?= $item["brand"] ?></p>
+                    <p><?= $item["size"] ?>cm</p>
+                    <p><span><?= $item["price"] ?>€</span></p>
+                    <p><?= $item["newPrice"] ?>€ </p>
                 </div>
             </div>
         <?php }
