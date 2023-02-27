@@ -15,8 +15,8 @@
             <a href="index.php"><img src="./assets/img/logo_fond_transparent.png" alt="">
             </a>
             <div class="nav">
-                <a href="add_matelas.php">
-                    <h3>Ajouter un matelas</h3>
+                <a href="add.php">
+                    <h3>Ajouter </h3>
                 </a>
             </div>
         </div>

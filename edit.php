@@ -22,7 +22,15 @@ if (isset($_GET["id"])) {
 
 
 if (!empty($_POST)) {
-    $picture = trim(strip_tags($_POST["picture"]));
+
+    if (!empty($_POST["picture_upload"])) {
+        $picture_upload = trim(strip_tags($_POST["picture_upload"]));
+    };
+
+    if (!empty($_POST["picture_link"])) {
+        $picture_link = trim(strip_tags($_POST["picture_link"]));
+    };
+
     $brand = trim(strip_tags($_POST["brand"]));
     $name = trim(strip_tags($_POST["name"]));
     $selectSize = trim(strip_tags($_POST["selectSize"]));
@@ -48,36 +56,50 @@ if (!empty($_POST)) {
         $errors["newPrice"] = "Le prix ne peut pas être inférieur à 0";
     }
 
-    // if (isset($_FILES["picture"]) && $_FILES["picture"]["error"] === UPLOAD_ERR_OK) {
-    //     $fileTmPath = $_FILES["picture"]["tmp_name"];
-    //     $fileName = $_FILES["picture"]["name"];
-    //     $fileType = $_FILES["picture"]["type"];
+    // Condition d'upload
 
-    //     $fileNameArray = explode(".", $fileName);
-    //     $fileExtension = end($fileNameArray);
-    //     $newFileName = md5($fileName . time()) . "." . $fileExtension;
+    if (isset($_FILES["picture_upload"]) && $_FILES["picture_upload"]["error"] == 0) {
+        $fileTmPath = $_FILES["picture_upload"]["tmp_name"];
+        $fileName = $_FILES["picture_upload"]["name"];
+        $fileType = $_FILES["picture_upload"]["type"];
 
-    //     $allowedTypes = array("image/jpeg", "image/png", "image/webp");
-    //     if (in_array($fileType, $allowedTypes)) {
-    //         move_uploaded_file($fileTmPath, $fileDestPath);
-    //     } else {
-    //         $errors["picture"] = "Le type de fichier est incorrect .jpg, .png ou .webp requis";
-    //     }
-    // }
+        $fileNameArray = explode(".", $fileName);
+        $fileExtension = end($fileNameArray);
+        $newFileName = md5($fileName . time()) . "." . $fileExtension;
+        $fileDestPath = "./assets/img/matelas/{$newFileName}";
 
-    $query = $db->prepare("UPDATE matelas SET picture = :picture, brand = :brand, name = :name, size = :size, price = :price, newPrice = :newPrice WHERE id = :id");
-    $query->bindParam(':picture', $picture, PDO::PARAM_STR);
-    $query->bindParam(':brand', $brand, PDO::PARAM_STR);
-    $query->bindParam(':name', $name, PDO::PARAM_STR);
-    $query->bindParam(':size', $selectSize, PDO::PARAM_STR);
-    $query->bindParam(':price', $price, PDO::PARAM_INT);
-    $query->bindParam(':newPrice', $newPrice, PDO::PARAM_INT);
-    $query->bindParam(':id', $id, PDO::PARAM_INT);
-    $query->execute();
+        $allowedTypes = array("image/jpeg", "image/png", "image/webp");
+        if (in_array($fileType, $allowedTypes)) {
+            move_uploaded_file($fileTmPath, $fileDestPath);
+        } else {
+            $errors["picture_upload"] = "Le type de fichier est incorrect .jpg, .png ou .webp requis";
+        }
+    }
+
+    if (!$errors) {
+
+        if (isset($fileName)) {
+            $query = $db->prepare("UPDATE matelas 
+                                SET picture = :picture_upload, brand = :brand, name = :name, size = :size, price = :price, newPrice = :newPrice WHERE id = :id");
+            $query->bindParam(":picture_upload", $newFileName, PDO::PARAM_STR);
+        } else {
+            $query = $db->prepare("UPDATE matelas 
+            SET picture = :picture_link, brand = :brand, name = :name, size = :size, price = :price, newPrice = :newPrice WHERE id = :id");
+            $query->bindParam(":picture_link", $picture_link, PDO::PARAM_STR);
+        }
+
+        $query->bindParam(":brand", $brand, PDO::PARAM_STR);
+        $query->bindParam(":name", $name, PDO::PARAM_STR);
+        $query->bindParam(":size", $selectSize, PDO::PARAM_STR);
+        $query->bindParam(":price", $price, PDO::PARAM_INT);
+        $query->bindParam(":newPrice", $newPrice, PDO::PARAM_INT);
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+    }
 
     // Si la requête s'est correctement exécutée et qu'il n'y a pas d'erreurs, cela renvoie vers la page de l'item
     if (!$errors) {
-        header("Location: matelas.php?id=$id");        
+        header("Location: matelas.php?id=$id");
     }
 }
 
@@ -87,21 +109,29 @@ include("templates/header.php");
 
 <main>
     <div class="form-data">
+        <h1>Modification des données</h1>
         <?php
         if ($find) {
         ?>
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="picture">Image du matelas :</label>
-                    <input type="text" id="picture" name="picture" value="<?= $matelas["picture"] ?>">
+                    <label for="picture_upload">Image à uploader :</label>
+                    <input type="file" name="picture_upload" id="picture_upload" value="<?= isset($picture_upload) ? $picture_upload : "" ?>">
 
                     <?php
-                    if (isset($errors["picture"])) {
+                    if (isset($errors["picture_upload"])) {
                     ?>
-                        <span class="info-error"><?= $errors["picture"] ?></span>
+                        <span class="info-error"><?= $errors["picture_upload"] ?></span>
                     <?php
                     }
                     ?>
+                </div>
+
+                <p>ou</p>
+
+                <div class="form-group">
+                    <label for="picture_link">Lien vers l'image :</label>
+                    <input type="text" name="picture_link" id="picture_link" placeholder="http://exemple.com/image.jpg" value="<?= $matelas["picture"] ?>">
                 </div>
 
                 <div class="form-group">
