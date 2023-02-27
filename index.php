@@ -3,7 +3,7 @@
 $db = new PDO('mysql:host=localhost;dbname=literie3000;charset=UTF8', 'root', '');
 
 // Requête sur la BDD
-$query = $db->query("SELECT *  FROM matelas
+$query = $db->query("SELECT * FROM matelas
                     ORDER BY id DESC");
 $matelas = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -18,7 +18,14 @@ include("templates/header.php")
         <?php foreach ($matelas as $item) {
         ?>
             <div class="item">
-                <img src="<?= $item["picture"] ?>" alt="<?= $item["name"] ?>">
+
+                <!-- On vérifie avec strpso() si la clé "picture" contient "http" en première position, ce qui signifie qu'il s'agit d'un lien, sinon on renvoie vers le chemin de l'image -->
+
+                <?php if (strpos($item["picture"], 'http') === 0) { ?>
+                    <img src="<?= $item["picture"] ?>" alt="<?= $item["name"] ?>">
+                <?php } else { ?>
+                    <img src="assets/img/matelas/<?= $item["picture"] ?>" alt="<?= $item["name"] ?>">
+                <?php } ?>
                 <div class="item-details">
                     <a href="matelas.php?id=<?= $item["id"] ?>"><?= $item["name"] ?></a>
 

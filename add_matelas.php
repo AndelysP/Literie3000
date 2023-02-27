@@ -15,6 +15,7 @@ if (!empty($_POST)) {
     $price = trim(strip_tags($_POST["price"]));
     $newPrice = trim(strip_tags($_POST["newPrice"]));
 
+    // Mise en place des messages d'erreurs
     $errors = [];
 
     if (empty($name)) {
@@ -34,7 +35,9 @@ if (!empty($_POST)) {
         $errors["newPrice"] = "Le prix ne peut pas être inférieur à 0";
     }
 
-    if (isset($_FILES["picture_upload"]) && $_FILES["picture_upload"]["error"] === UPLOAD_ERR_OK) {
+    // Condition d'upload
+
+    if (isset($_FILES["picture_upload"]) && $_FILES["picture_upload"]["error"] == 0) {
         $fileTmPath = $_FILES["picture_upload"]["tmp_name"];
         $fileName = $_FILES["picture_upload"]["name"];
         $fileType = $_FILES["picture_upload"]["type"];
@@ -56,7 +59,7 @@ if (!empty($_POST)) {
 
         $db = new PDO('mysql:host=localhost;dbname=literie3000;charset=UTF8', 'root', '');
 
-        if (isset($picture_upload)) {
+        if (isset($fileName)) {
             $query = $db->prepare("INSERT INTO matelas 
                                 (picture, brand, name, size, price, newPrice) 
                                 VALUES (:picture_upload, :brand, :name, :size, :price, :newPrice)");
@@ -67,35 +70,13 @@ if (!empty($_POST)) {
                                 VALUES (:picture_link, :brand, :name, :size, :price, :newPrice)");
             $query->bindParam(":picture_link", $picture_link, PDO::PARAM_STR);
         }
-    
+
         $query->bindParam(":brand", $brand, PDO::PARAM_STR);
         $query->bindParam(":name", $name, PDO::PARAM_STR);
         $query->bindParam(":size", $selectSize, PDO::PARAM_STR);
         $query->bindParam(":price", $price, PDO::PARAM_INT);
         $query->bindParam(":newPrice", $newPrice, PDO::PARAM_INT);
-            
-        if ($query->execute()) {
-            // La requête s'est bien déroulée donc on redirige l'utilisateur vers la page d'accueil
-            header("Location: matelas.php");
-        }
-
-        
-        // $query = $db->prepare("INSERT INTO matelas 
-        //                     (picture, brand, name, size, price, newPrice) 
-        //                     VALUES (:picture_upload, :brand, :name, :size, :price, :newPrice)");
-
-        // $query->bindParam(":picture_upload", $newFileName, PDO::PARAM_STR);
-        // // $query->bindParam(":picture_link", $picture_link, PDO::PARAM_STR);
-        // $query->bindParam(":brand", $brand, PDO::PARAM_STR);
-        // $query->bindParam(":name", $name, PDO::PARAM_STR);
-        // $query->bindParam(":size", $selectSize, PDO::PARAM_STR);
-        // $query->bindParam(":price", $price, PDO::PARAM_INT);
-        // $query->bindParam(":newPrice", $newPrice, PDO::PARAM_INT);
-        
-        // if ($query->execute()) {
-        //     // La requête s'est bien déroulée donc on redirige l'utilisateur vers la page d'accueil
-        //     header("Location: matelas.php");
-        // }
+        $query->execute();
     }
 }
 
@@ -109,7 +90,7 @@ include("templates/header.php");
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="picture_upload">Image à uploader :</label>
-                <input type="file" name="picture_upload" id="picture_upload">
+                <input type="file" name="picture_upload" id="picture_upload" value="<?= isset($picture_upload) ? $picture_upload : "" ?>">
 
                 <?php
                 if (isset($errors["picture_upload"])) {

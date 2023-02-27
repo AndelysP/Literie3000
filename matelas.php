@@ -30,7 +30,11 @@ include("templates/header.php")
         ?>
             <div class="matelas-wrapper">
                 <div class="matelas-left-wrapper">
-                    <img src="<?= $matelas["picture"] ?>" alt="<?= $matelas["name"] ?>">
+                    <?php if (strpos($item["picture"], 'http') === 0) { ?>
+                        <img src="<?= $item["picture"] ?>" alt="<?= $item["name"] ?>">
+                    <?php } else { ?>
+                        <img src="assets/img/matelas/<?= $item["picture"] ?>" alt="<?= $item["name"] ?>">
+                    <?php } ?>
                 </div>
                 <div class="matelas-right-wrapper">
                     <h1><?= $matelas["name"] ?></h1>
@@ -41,12 +45,12 @@ include("templates/header.php")
                     <p> Prix actuel : <?= $matelas["newPrice"] ?>€ </p>
 
                     <div class="matelas-btn">
-                       <a href="edit.php?id=<?= $matelas["id"] ?>"><button class="edit">Modifier</button></a> 
-                       <a href="delete.php?id<?= $matelas["id"] ?>"><button class="delete">Supprimer</button></a> 
+                        <a href="edit.php?id=<?= $matelas["id"] ?>"><button class="edit">Modifier</button></a>
+                        <a href="delete.php?id<?= $matelas["id"] ?>"><button class="delete">Supprimer</button></a>
                     </div>
                 </div>
             </div>
-        <?php } else { 
+        <?php } else {
         ?>
             <h1><?= $data["name"] ?></h1>
         <?php } ?>
