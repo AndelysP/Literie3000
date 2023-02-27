@@ -1,0 +1,38 @@
+<?php
+$db = new PDO('mysql:host=localhost;dbname=literie3000;charset=UTF8', 'root', '');
+
+$query = $db->query("SELECT *  FROM matelas
+                    ORDER BY id ASC");
+$matelas = $query->fetchAll(PDO::FETCH_ASSOC);
+
+// var_dump($matelas);
+
+include("templates/header.php")
+?>
+
+<main>
+    <div class="items">
+        <?php foreach ($matelas as $item) {
+        ?>
+            <div class="item">
+                <img src="<?= $item["picture"] ?>" alt="<?= $item["name"] ?>">
+                <div class="item-details">
+                    <a href="matelas.php?id=<?= $item["id"] ?>"><?= $item["name"] ?></a>
+
+                   <p><?= $item["marque"] ?></p>
+                   <p><?= $item["dimensions"] ?>m</p>
+                   <p><span><?= $item["price"] ?>€</span></p>
+                   <p><?= $item["solde"] ?>€ </p>
+                </div>
+                <div class="item-btn">
+                    <button class="edit">Modifier</button>
+                    <button class="delete">Supprimer</button>
+                </div>
+            </div>
+        <?php }
+        ?>
+    </div>
+</main>
+
+<?php
+include("templates/footer.php");
