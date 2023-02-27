@@ -2,10 +2,15 @@ body {
   box-sizing: border-box;
   margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(239, 247, 253);
+  background-color: rgb(241, 246, 250);
 }
 
-header .container {
+h1 {
+  text-align: center;
+  color: #144284;
+}
+
+header .flex-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,16 +18,15 @@ header .container {
   padding: 1.5rem;
   background-color: rgb(20, 66, 132);
 }
-header .container img {
+header .flex-container img {
   width: 350px;
 }
-header .container .nav {
+header .flex-container .nav {
   color: #fff;
 }
 
 .items .item {
   display: flex;
-  justify-content: space-between;
   margin: 2rem;
   background-color: rgba(64, 138, 148, 0.466);
   border-radius: 20px;
@@ -44,12 +48,27 @@ header .container .nav {
   text-decoration: line-through;
   color: #C76161;
 }
-.items .item .item-btn {
+
+.matelas-wrapper {
+  display: flex;
+}
+.matelas-wrapper .matelas-left-wrapper {
+  padding-right: 3rem;
+}
+.matelas-wrapper .matelas-left-wrapper img {
+  max-width: 50vw;
+}
+.matelas-wrapper .matelas-right-wrapper span {
+  text-decoration: line-through;
+  color: #C76161;
+  font-weight: bold;
+}
+.matelas-wrapper .matelas-right-wrapper .matelas-btn {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
-.items .item .item-btn button {
+.matelas-wrapper .matelas-right-wrapper .matelas-btn button {
   margin: 1rem;
   padding: 1rem;
   border-radius: 10px;
@@ -57,11 +76,11 @@ header .container .nav {
   color: #fff;
   cursor: pointer;
 }
-.items .item .item-btn .delete {
+.matelas-wrapper .matelas-right-wrapper .matelas-btn .delete {
   background-color: rgb(199, 97, 97);
   box-shadow: inset 5px -5px 10px rgb(138, 59, 59);
 }
-.items .item .item-btn .edit {
+.matelas-wrapper .matelas-right-wrapper .matelas-btn .edit {
   background-color: rgb(150, 229, 143);
   box-shadow: inset 5px -5px 10px rgb(84, 143, 79);
 }

@@ -1,6 +1,8 @@
 <?php
+// Appel à la BDD
 $db = new PDO('mysql:host=localhost;dbname=literie3000;charset=UTF8', 'root', '');
 
+// Requête sur la BDD
 $query = $db->query("SELECT *  FROM matelas
                     ORDER BY id ASC");
 $matelas = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -23,10 +25,6 @@ include("templates/header.php")
                    <p><?= $item["dimensions"] ?>m</p>
                    <p><span><?= $item["price"] ?>€</span></p>
                    <p><?= $item["solde"] ?>€ </p>
-                </div>
-                <div class="item-btn">
-                    <button class="edit">Modifier</button>
-                    <button class="delete">Supprimer</button>
                 </div>
             </div>
         <?php }

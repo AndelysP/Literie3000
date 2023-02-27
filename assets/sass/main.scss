@@ -2,11 +2,16 @@ body {
     box-sizing: border-box;
     margin: 0 auto;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(239, 247, 253);
+    background-color: rgb(241, 246, 250);
+}
+
+h1 {
+    text-align: center;
+    color: #144284;
 }
 
 header {
-    .container {
+    .flex-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -28,7 +33,6 @@ header {
 .items {
     .item {
         display: flex;
-        justify-content: space-between;
         margin: 2rem;
         background-color: rgba(64, 138, 148, 0.466);
         border-radius: 20px;
@@ -47,17 +51,35 @@ header {
                 color: #fff;
                 font-size: 23px;
             }
-            span{
+
+            span {
                 text-decoration: line-through;
                 color: #C76161;
             }
         }
+    }
+}
 
-        .item-btn {
+.matelas-wrapper {
+    display: flex;
+
+    .matelas-left-wrapper {
+        padding-right: 3rem;
+        img {
+            max-width: 50vw;
+        }
+    }
+
+    .matelas-right-wrapper {
+        span {
+            text-decoration: line-through;
+            color: #C76161;
+            font-weight: bold;
+        }
+        .matelas-btn {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-
+            justify-content: center;
             button {
                 margin: 1rem;
                 padding: 1rem;
@@ -70,12 +92,14 @@ header {
             .delete {
                 background-color: rgb(199, 97, 97);
                 box-shadow: inset 5px -5px 10px rgb(138, 59, 59);
-                
+
             }
+
             .edit {
                 background-color: rgb(150, 229, 143);
                 box-shadow: inset 5px -5px 10px rgb(84, 143, 79);
             }
+
         }
     }
 }

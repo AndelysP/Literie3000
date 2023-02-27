@@ -9,9 +9,9 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <img src="./assets/img/logo_fond_transparent.png" alt="">
-
+        <div class="flex-container">
+            <a href="index.php"><img src="./assets/img/logo_fond_transparent.png" alt="">
+</a>
             <div class="nav">
                 <h3>Ajouter un matelas</h3>
             </div>
