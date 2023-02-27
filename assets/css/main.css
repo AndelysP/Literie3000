@@ -1,7 +1,7 @@
 body {
   box-sizing: border-box;
   margin: 0 auto;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: rgb(241, 246, 250);
 }
 
@@ -28,9 +28,23 @@ header .flex-container .nav a {
 
 .items .item {
   display: flex;
-  margin: 2rem;
-  background-color: rgba(95, 144, 172, 0.466);
+  margin: 2rem 10rem;
+  background-color: rgba(118, 158, 182, 0.466);
   border-radius: 20px;
+}
+@media screen and (max-width: 992px) {
+  .items .item {
+    margin: 2rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .items .item {
+    margin: 2rem;
+    flex-wrap: wrap;
+  }
+  .items .item img {
+    width: 100%;
+  }
 }
 .items .item img {
   max-width: 300px;
@@ -52,6 +66,13 @@ header .flex-container .nav a {
 
 .matelas-wrapper {
   display: flex;
+  padding-top: 4rem;
+}
+@media screen and (max-width: 768px) {
+  .matelas-wrapper {
+    margin: 2rem;
+    flex-wrap: wrap;
+  }
 }
 .matelas-wrapper .matelas-left-wrapper {
   padding-right: 3rem;
@@ -94,14 +115,17 @@ header .flex-container .nav a {
 }
 .form-data form .btn-edit {
   font-size: 1.1rem;
-  background-color: #145784;
+  background-color: #4181ac;
   color: white;
   padding: 1rem 2rem;
   margin: 1rem auto;
-  text-transform: uppercase;
   border: 0;
   border-radius: 2rem;
   cursor: pointer;
+}
+.form-data form .btn-edit:hover {
+  transform: scale(1.06);
+  background-color: #296994;
 }
 .form-data form .form-group {
   flex-basis: 100%;
