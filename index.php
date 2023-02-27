@@ -22,7 +22,7 @@ include("templates/header.php")
                     <a href="matelas.php?id=<?= $item["id"] ?>"><?= $item["name"] ?></a>
 
                    <p><?= $item["brand"] ?></p>
-                   <p><?= $item["size"] ?>m</p>
+                   <p><?= $item["size"] ?>cm</p>
                    <p><span><?= $item["price"] ?>€</span></p>
                    <p><?= $item["newPrice"] ?>€ </p>
                 </div>
