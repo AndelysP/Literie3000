@@ -26,6 +26,8 @@ include("templates/header.php")
                 <?php } else { ?>
                     <img src="assets/img/matelas/<?= $item["picture"] ?>" alt="<?= $item["name"] ?>">
                 <?php } ?>
+
+                <!-- Affichage des détails de chaque matelas -->
                 <div class="item-details">
                     <a href="matelas.php?id=<?= $item["id"] ?>"><?= $item["name"] ?></a>
 

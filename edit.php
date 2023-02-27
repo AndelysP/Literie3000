@@ -1,4 +1,5 @@
 <?php
+// Appel à la BDD
 $db = new PDO('mysql:host=localhost;dbname=literie3000;charset=UTF8', 'root', '');
 
 $find = false;
@@ -20,7 +21,7 @@ if (isset($_GET["id"])) {
     }
 }
 
-
+// Si le formulaire n'est pas vide, utilisation des strip_tags pour éviter la faille XSS et de trim pour supprimer les espaces en début et fin de chaine
 if (!empty($_POST)) {
 
     if (!empty($_POST["picture_upload"])) {
@@ -37,6 +38,7 @@ if (!empty($_POST)) {
     $price = trim(strip_tags($_POST["price"]));
     $newPrice = trim(strip_tags($_POST["newPrice"]));
 
+    // Initialisation des messages d'erreurs
     $errors = [];
 
     if (empty($name)) {
@@ -59,13 +61,13 @@ if (!empty($_POST)) {
     // Condition d'upload
 
     if (isset($_FILES["picture_upload"]) && $_FILES["picture_upload"]["error"] == 0) {
-        $fileTmPath = $_FILES["picture_upload"]["tmp_name"];
-        $fileName = $_FILES["picture_upload"]["name"];
-        $fileType = $_FILES["picture_upload"]["type"];
+        $fileTmPath = $_FILES["picture_upload"]["tmp_name"]; 
+        $fileName = $_FILES["picture_upload"]["name"]; // Nom de l'image
+        $fileType = $_FILES["picture_upload"]["type"]; // Type de l'image
 
         $fileNameArray = explode(".", $fileName);
         $fileExtension = end($fileNameArray);
-        $newFileName = md5($fileName . time()) . "." . $fileExtension;
+        $newFileName = md5($fileName . time()) . "." . $fileExtension; // Hash unique
         $fileDestPath = "./assets/img/matelas/{$newFileName}";
 
         $allowedTypes = array("image/jpeg", "image/png", "image/webp");
@@ -80,11 +82,13 @@ if (!empty($_POST)) {
 
         if (isset($fileName)) {
             $query = $db->prepare("UPDATE matelas 
-                                SET picture = :picture_upload, brand = :brand, name = :name, size = :size, price = :price, newPrice = :newPrice WHERE id = :id");
+                                   SET picture = :picture_upload, brand = :brand, name = :name, size = :size, price = :price, newPrice = :newPrice 
+                                   WHERE id = :id");
             $query->bindParam(":picture_upload", $newFileName, PDO::PARAM_STR);
         } else {
             $query = $db->prepare("UPDATE matelas 
-            SET picture = :picture_link, brand = :brand, name = :name, size = :size, price = :price, newPrice = :newPrice WHERE id = :id");
+                                   SET picture = :picture_link, brand = :brand, name = :name, size = :size, price = :price, newPrice = :newPrice 
+                                   WHERE id = :id");
             $query->bindParam(":picture_link", $picture_link, PDO::PARAM_STR);
         }
 

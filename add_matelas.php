@@ -1,4 +1,5 @@
 <?php
+// Si le formulaire n'est pas vide, utilisation des strip_tags pour éviter la faille XSS et de trim pour supprimer les espaces en début et fin de chaine
 if (!empty($_POST)) {
     if (!empty($_POST["picture_upload"])) {
         $picture_upload = trim(strip_tags($_POST["picture_upload"]));
@@ -34,13 +35,15 @@ if (!empty($_POST)) {
     // Condition d'upload
 
     if (isset($_FILES["picture_upload"]) && $_FILES["picture_upload"]["error"] == 0) {
-        $fileTmPath = $_FILES["picture_upload"]["tmp_name"];
-        $fileName = $_FILES["picture_upload"]["name"];
-        $fileType = $_FILES["picture_upload"]["type"];
+        $fileTmPath = $_FILES["picture_upload"]["tmp_name"]; 
+        $fileName = $_FILES["picture_upload"]["name"]; // Nom de l'image
+        $fileType = $_FILES["picture_upload"]["type"]; // Type de l'image
+
         $fileNameArray = explode(".", $fileName);
         $fileExtension = end($fileNameArray);
-        $newFileName = md5($fileName . time()) . "." . $fileExtension;
+        $newFileName = md5($fileName . time()) . "." . $fileExtension; // Hash unique
         $fileDestPath = "./assets/img/matelas/{$newFileName}";
+
         $allowedTypes = array("image/jpeg", "image/png", "image/webp");
         if (in_array($fileType, $allowedTypes)) {
             move_uploaded_file($fileTmPath, $fileDestPath);
